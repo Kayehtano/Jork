@@ -1,3 +1,21 @@
+/*
+░░░░░██╗░█████╗░██████╗░██╗░░██╗
+░░░░░██║██╔══██╗██╔══██╗██║░██╔╝
+░░░░░██║██║░░██║██████╔╝█████═╝░
+██╗░░██║██║░░██║██╔══██╗██╔═██╗░
+╚█████╔╝╚█████╔╝██║░░██║██║░╚██╗
+░╚════╝░░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝
+
+Welcome to Jork!
+
+Things to know:
+When creating rooms, make sure to instantiate items BEFORE the room.
+If the room has no items, enter 'none'.
+
+*/
+
+
+// import classes
 import javax.swing.*;
 
 class Main
@@ -7,7 +25,7 @@ class Main
 		GetPlayerName();
 
 		Items _PlayerRoom = new Items("rusty knife, cloak of disguise, 50 gold coins");
-		Room PlayerRoom = new Room("Inn of Cavv, Room 1120", 2, 2, "A small, decrepit room with a hard bed, wooden chair, and dripping ceiling.", _PlayerRoom.items());
+		Room PlayerRoom = new Room("Inn of Cavv, Room 1120", 2, 2, "A small, decrepit room with a hard bed, wooden chair, and a dripping ceiling.", _PlayerRoom.items());
 
 		System.out.println(PlayerRoom.toString());
 	}

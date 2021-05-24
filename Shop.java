@@ -30,13 +30,20 @@ public class Shop extends Room
 	// thanks to StackOverflow
 	private String checkVowel(String word)
 	{
-		if("AEIOUaeiou".indexOf(word.charAt(0)) != -1) // check if word has any vowels
+		if(Character.isLetter(word.charAt(0))) // check if char is a letter
 		{
-			return "an "; // return an is true
+			if("AEIOUaeiou".indexOf(word.charAt(0)) != -1) // check if word has any vowels
+			{
+				return "an "; // return an is true
+			}
+			else
+			{
+				return "a "; // return a if false
+			}
 		}
-		else
+		else // check if char is a number
 		{
-			return "a "; // return a if false
+			return "";
 		}
 	} // end of checkVowel
 

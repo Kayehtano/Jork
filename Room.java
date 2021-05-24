@@ -94,29 +94,30 @@ public class Room
 		ArrayList<String> convert = new ArrayList<String>();
 		convert = items; // convert is set to ArrayList of items
 		String output = this.roomName + "\n\n" + 
-						this.description + "\n" + 
-						"There is " + 
-						checkVowel(convert.get(0)) + "\n";
+						this.description + "\n";
 
-		if(convert.size() > 1) // if we have multiple items
+		if(!convert.get(0).equals("none"))
 		{
-			for(int i = 0; i < convert.size() - 1; i++)
+			if(convert.size() > 1) // if we have multiple items
 			{
-				output += convert.get(i) + ", "; // add commas between each item
-			}
+				for(int i = 0; i < convert.size() - 1; i++)
+				{
+					output += convert.get(i) + ", "; // add commas between each item
+				}
 
-			// add an "and" for the last item in the list
-			String lastWord = convert.get(convert.size() - 1);
-			output += "and " + checkVowel(lastWord) + lastWord;
-		}
-		else // if we only have 1 item
-		{
-			output += "" + convert.get(0);
+				// add an "and" for the last item in the list
+				String lastWord = convert.get(convert.size() - 1);
+				output += "and " + checkVowel(lastWord) + lastWord + ".";
+			}
+			else // if we only have 1 item
+			{
+				output += "" + convert.get(0) + ".";
+			}
 		}
 
 		// add possible locations to move to
 		// output += ;
 
-		return output + ".";
+		return output;
 	} // end of toString
 } // end of class
