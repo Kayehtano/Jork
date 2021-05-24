@@ -6,7 +6,7 @@ class Main
 	{
 		GetPlayerName();
 
-		Items _PlayerRoom = new Items("apple, banana, cloak of disguise");
+		Items _PlayerRoom = new Items("rusty knife, cloak of disguise, 50 gold coins");
 		Room PlayerRoom = new Room("Inn of Cavv, Room 1120", 2, 2, "A small, decrepit room with a hard bed, wooden chair, and dripping ceiling.", _PlayerRoom.items());
 
 		System.out.println(PlayerRoom.toString());

@@ -25,3 +25,6 @@ In order to progress through the game, the player types in commands. For example
 * Quests and more!*
 
 #### * To be implemented
+
+## Known Bugs
+* ~~There is a minor bug that the grammar is incorrect if the first item is plural. Really minor.~~ Fixed!
