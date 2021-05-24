@@ -5,6 +5,11 @@ class Main
 	public static void main(String[] args)
 	{
 		GetPlayerName();
+
+		Items _PlayerRoom = new Items("apple, banana, cloak of disguise");
+		Room PlayerRoom = new Room("Inn of Cavv, Room 1120", 2, 2, "A small, decrepit room with a hard bed, wooden chair, and dripping ceiling.", _PlayerRoom.items());
+
+		System.out.println(PlayerRoom.toString());
 	}
 
 	public static void GetPlayerName()
@@ -17,4 +22,16 @@ class Main
 			InGameName = "Joe"; // default name
 		}
 	} // end of GetPlayerName func
+
+	public static void makeMap()
+	{
+		int[][] TownOfCavv = new int[][]
+		{
+			{0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0},
+			{0, 0, 1, 0, 0},
+			{0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0},
+		};
+	}
 } // end of class

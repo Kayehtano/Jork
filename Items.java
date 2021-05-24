@@ -10,37 +10,25 @@ import java.util.ArrayList;
    to separate the items with a comma and space!! (, )
 */
 
-class Items
+public class Items
 {
 	// create variables
-	private String name;
 	private String items;
 
 	// create constructor
-	Items(String name, String items)
+	Items(String items)
 	{
-		this.name = name;
 		this.items = items;
 	}
 
-	// setters
-	public void setName(String name) // set name
-	{
-		this.name = name;
-	}
-
+	// setter
 	public void setItems(String items) // set items
 	{
 		this.items = items;
 	}
 
-	// getters
-	public String name() // get name
-	{
-		return name;
-	}
-
-	public ArrayList items() // get items
+	// getter
+	public ArrayList<String> items() // get items
 	{
 		return _items(items);
 	}
@@ -70,46 +58,5 @@ class Items
 		}
 
 		return list; // return ArrayList
-	}
-
-	// thanks to StackOverflow
-	private String checkVowel(String word)
-	{
-		if("AEIOUaeiou".indexOf(word.charAt(0)) != -1) // check if word has any vowels
-		{
-			return "an "; // return an is true
-		}
-		else
-		{
-			return "a "; // return a if false
-		}
-	} // end of checkVowel
-
-	// output items list to string, complete with punctuation 
-	// and grammar
-	public String toString()
-	{
-		// create variables for method
-		ArrayList<String> convert = new ArrayList<String>();
-		convert = _items(items);
-		String output = checkVowel(convert.get(0)); // get a or an
-
-		if(convert.size() > 1) // if we have multiple items
-		{
-			for(int i = 0; i < convert.size() - 1; i++)
-			{
-				output += convert.get(i) + ", "; // add commas between each item
-			}
-
-			// add an "and" for the last item in the list
-			String lastWord = convert.get(convert.size() - 1);
-			output += "and " + checkVowel(lastWord) + lastWord;
-		}
-		else // if we only have 1 item
-		{
-			output += "" + convert.get(0);
-		}
-
-		return output + ".";
-	} // end of toString
+	} // end of conversion method
 } // end of class

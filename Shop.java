@@ -3,6 +3,9 @@ import java.util.ArrayList;
 
 public class Shop extends Room
 {
+
+	private ArrayList<String> shopItems;
+
 	// Constructor
 	public Shop(String roomName, int locX, int locY, String description, ArrayList<String> items, ArrayList<String> shopItems)
 	{
@@ -17,7 +20,7 @@ public class Shop extends Room
 	}
 
 	// setter
-	public void setShopItems()
+	public void setShopItems(ArrayList<String> shopItems)
 	{
 		this.shopItems = shopItems;
 	}
@@ -43,7 +46,7 @@ public class Shop extends Room
 	{
 		// create variables for method
 		ArrayList<String> convert = new ArrayList<String>();
-		convert = _items(shopItems);
+		convert = shopItems;
 		String output = checkVowel(convert.get(0)); // get a or an
 
 		if(convert.size() > 1) // if we have multiple items
