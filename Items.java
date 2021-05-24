@@ -83,7 +83,7 @@ class Items
 		{
 			return "a "; // return a if false
 		}
-	}
+	} // end of checkVowel
 
 	// output items list to string, complete with punctuation 
 	// and grammar
@@ -92,7 +92,7 @@ class Items
 		// create variables for method
 		ArrayList<String> convert = new ArrayList<String>();
 		convert = _items(items);
-		String output = checkVowel(convert.get(0));
+		String output = checkVowel(convert.get(0)); // get a or an
 
 		if(convert.size() > 1) // if we have multiple items
 		{
@@ -111,5 +111,5 @@ class Items
 		}
 
 		return output + ".";
-	}
-}
+	} // end of toString
+} // end of class

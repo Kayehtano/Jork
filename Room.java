@@ -1,18 +1,24 @@
+// import classes
 import java.util.ArrayList;
 
-class Room
+public class Room
 {
 	// create class variables
 	private String roomName; // name
-	private String location; // location
+	
+	// X and Y coordinates on the 2d array
+	private int locX;
+	private int locY;
+	
 	private String description;
-	private ArrayList items; // items
+	private ArrayList<String> items; // items
 
 	// Construct room
-	Room(String roomName, String location, String description, ArrayList<String> items)
+	public Room(String roomName, int locX, int locY, String description, ArrayList<String> items)
 	{
 		this.roomName = roomName;
-		this.location = location;
+		this.locX = locX;
+		this.locY = locY;
 		this.description = description;
 		this.items = items;
 	}
@@ -30,7 +36,7 @@ class Room
 
 	public String getLocation()
 	{
-		return location;
+		return "" + locX + ", " + locY;
 	}
 	
 	public ArrayList<String> getItems()
@@ -49,13 +55,14 @@ class Room
 		this.description = description;
 	}
 
-	public void setLocation(String location)
+	public void setLocation(int locX, int locY)
 	{
-		this.location = location;
+		this.locX = locX;
+		this.locY = locY;
 	}
 
 	public void setItems(ArrayList<String> items)
 	{
 		this.items = items;
 	}
-}
+} // end of class

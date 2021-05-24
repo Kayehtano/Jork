@@ -11,4 +11,4 @@ Jork is an interactive fiction game based on Infocom's 1980 hit-game Zork. The g
 The objective is to make it to the last stage/chapter of the game without dying and with all required items. Dying or winning the game will lead to an ending screen that totals your score depending on their choices and how many treasures they found during the course of the game.
 
 ## How to Play
-The player will be able to see their location and the things that surround them. They will have to interact with objects to solve puzzles and 
+The player will be able to see their location and the things that surround them. They will have to interact with objects to solve puzzles
