@@ -125,6 +125,27 @@ public class Room
 		*/
 	} // end function
 
+	private String getRoomDirection(String e)
+	{
+		if(e.charAt(0) == 'N')
+		{
+			return "North";
+		}
+		else if(e.charAt(0) == 'S')
+		{
+			return "South";
+		}
+		else if(e.charAt(0) == 'W')
+		{
+			return "West";
+		}
+		else if(e.charAt(0) == 'E')
+		{
+			return "East";
+		}
+		return "null";
+	}
+
 	// output items list to string, complete with punctuation 
 	// and grammar
 	public String toString()
@@ -154,8 +175,23 @@ public class Room
 			}
 		}
 
+		output += "\n\nThere is " + checkVowel(roomData[0][0]);
+
 		// add possible locations to move to
-		// output += ;
+		int numOfColumns = roomData[0].length;
+		if(numOfColumns > 1) // check if we have more than one room
+		{
+			for(int i = 0; i < numOfColumns - 1; i++)
+			{
+				output += roomData[0][i] + " to the " + getRoomDirection(roomData[1][i]) + ", ";
+			}
+
+			output += "and " + checkVowel(roomData[0][numOfColumns - 1]) + roomData[0][numOfColumns - 1] + " to the " + getRoomDirection(roomData[1][numOfColumns - 1]) + ".";
+		}
+		else // if we only have 1 item
+		{
+			output += roomData[0][0] + " to the " + checkVowel(roomData[1][0]) + ".";
+		}
 
 		return output;
 	} // end of toString
