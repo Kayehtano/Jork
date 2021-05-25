@@ -9,7 +9,8 @@ public class Room
 	private String description; // description
 	private ArrayList<String> items; // items
 
-	private String adjacentRooms; // parseable to get access to other rooms
+	// room code
+	private String adjacentRooms;
 	private String[][] roomData;
 
 	// Construct room

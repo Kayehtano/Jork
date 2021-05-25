@@ -2,11 +2,8 @@
 import java.util.ArrayList;
 
 /* 
-   This class will enable the creation of items
-   without having to create an entire ArrayList.
-
    IMPORTANT!!!
-   In order to create multiple items, make sure 
+   In order to list multiple items, make sure 
    to separate the items with a comma and space!! (, )
 */
 
