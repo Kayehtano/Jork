@@ -22,12 +22,8 @@ class Main
 {
 	public static void main(String[] args)
 	{
+		InitiateItemsAndRooms();
 		GetPlayerName();
-
-		Items _PlayerRoom = new Items("rusty knife, cloak of disguise, 50 gold coins");
-		Room PlayerRoom = new Room("Inn of Cavv, Room 1120", 2, 2, "A small, decrepit room with a hard bed, wooden chair, and a dripping ceiling.", _PlayerRoom.items());
-
-		System.out.println(PlayerRoom.toString());
 	}
 
 	public static void GetPlayerName()
@@ -41,15 +37,12 @@ class Main
 		}
 	} // end of GetPlayerName func
 
-	public static void makeMap()
+	// INIT ALL ITEMS AND ROOMS
+	public static void InitiateItemsAndRooms()
 	{
-		int[][] TownOfCavv = new int[][]
-		{
-			{0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0},
-			{0, 0, 1, 0, 0},
-			{0, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0},
-		};
+		// Items _PlayerRoom = new Items("rusty knife, cloak of disguise, 50 gold coins");
+		// Room PlayerRoom = new Room("Inn of Cavv, Room 1120", 2, 2, "A small, decrepit room with a hard bed, wooden chair, and a dripping ceiling.", _PlayerRoom.items());
+
+		
 	}
 } // end of class

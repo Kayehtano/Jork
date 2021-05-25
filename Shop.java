@@ -7,9 +7,9 @@ public class Shop extends Room
 	private ArrayList<String> shopItems;
 
 	// Constructor
-	public Shop(String roomName, int locX, int locY, String description, ArrayList<String> items, ArrayList<String> shopItems)
+	public Shop(String roomName, String description, ArrayList<String> items, String adjacentRooms,  ArrayList<String> shopItems)
 	{
-		super(roomName, locX, locY, description, items);
+		super(roomName, description, items, adjacentRooms);
 		this.shopItems = shopItems;
 	}
 

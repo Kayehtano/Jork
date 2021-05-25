@@ -6,21 +6,18 @@ public class Room
 	// create class variables
 	private String roomName; // name
 	
-	// X and Y coordinates on the 2d array
-	private int locX;
-	private int locY;
-	
-	private String description;
+	private String description; // description
 	private ArrayList<String> items; // items
 
+	private String adjacentRooms; // parseable to get access to other rooms
+
 	// Construct room
-	public Room(String roomName, int locX, int locY, String description, ArrayList<String> items)
+	public Room(String roomName, String description, ArrayList<String> items, String adjacentRooms)
 	{
 		this.roomName = roomName;
-		this.locX = locX;
-		this.locY = locY;
 		this.description = description;
 		this.items = items;
+		this.adjacentRooms = adjacentRooms;
 	}
 
 	// Getters - get class values
@@ -33,18 +30,13 @@ public class Room
 	{
 		return description;
 	}
-
-	public String getLocation()
-	{
-		return "" + locX + ", " + locY;
-	}
 	
 	public ArrayList<String> getItems()
 	{
 		return items;
 	}
 
-	// setters
+	// Setters
 	public void setName(String roomName)
 	{
 		this.roomName = roomName;
@@ -53,12 +45,6 @@ public class Room
 	public void setDescription(String description)
 	{
 		this.description = description;
-	}
-
-	public void setLocation(int locX, int locY)
-	{
-		this.locX = locX;
-		this.locY = locY;
 	}
 
 	public void setItems(ArrayList<String> items)
