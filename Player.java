@@ -9,13 +9,24 @@ class Player
 	private double weightLimit = 10.0;
 	private ArrayList<String> inventory;
 	private float damage = 5.0f; // 5.0 is base damage
-	private String status;
+	private String status = "";
 	private Object currentWeapon;
 
 	// essential words
 	public static String verb;
 	public static String directObject;
 	public static String indirectObject;
+
+	public Player()
+	{
+		this.health = 100;
+		this.level = 1;
+		this.weightLimit = 10.0;
+		this.inventory = null;
+		this.damage = 5.0f;
+		this.status = "";
+		this.currentWeapon = null;
+	}
 
 	public Player(int health, int level, double weightLimit, ArrayList<String> inventory, float damage, String status, Object currentWeapon)
 	{
@@ -90,7 +101,7 @@ class Player
 		this.damage = damage;
 	}
 
-	public void setStatus()
+	public void refreshStatus()
 	{
 		if(health >= 90)
 		{
@@ -100,12 +111,31 @@ class Player
 		{
 			this.status = "You are hurt.\nYou have some bruises and cuts, but I think you should not take any more damage.";
 		}
+		else if(health >= 40)
+		{
+			this.status = "Your condition is serious.\nI recommend seeing a doctor as soon as possible.";
+		}
+		else if(health >= 20)
+		{
+			this.status = "You are close to death.\nYour future is grim, you have a slim chance of surviving.";
+		}
+		else if(health >= 1)
+		{
+			this.status = "You are at death's door.";
+		}
+		else
+		{
+			this.status = "You are dead.";
+		}
+		System.out.println("Current status:\n" + status);
+		System.out.println("\n\n");
+		AnalysePlayerInput(" ");
 	}
 	
 	/* ----- PARSER CODE ----- */
 
 	// Analyse player input
-	public static void AnalysePlayerInput(String question)
+	public void AnalysePlayerInput(String question)
 	{
 		// contain answer into String
 		String answer = "";
@@ -132,6 +162,8 @@ class Player
 		verbs.add("buy");
 		verbs.add("get");
 		verbs.add("take");
+		verbs.add("drop");
+		verbs.add("throw");
 
 		// move
 		verbs.add("move");
@@ -139,6 +171,7 @@ class Player
 
 		// extra
 		verbs.add("read");
+		verbs.add("diagnose");
 
 		// parse answer 
 		for(int i = 0; i < answer.length() - 1; i++)
@@ -162,7 +195,44 @@ class Player
 			System.out.println(list.get(i));
 		}
 
+		if(verbs.contains(list.get(0)))
+		{
+			verb = list.get(0); // verb is first word
+			switch(verb)
+			{
+				case("move"):
+				case("go"):
+					// Move();
+				case("attack"):
+				case("slash"):
+					// Attack();
+				case("burn"):
+					// burn?
+				case("look"):
+					// LookAround();
+				case("inventory"):
+					// openInventory();
+				case("get"):
+				case("take"):
+					// takeObject();
+				case("drop"):
+				case("throw"):
+					// dropObject();
+				case("read"):
+					// readObject();
+				case("buy"):
+					// shop
+				case("diagnose"):
+					if(list.size() == 1)
+						refreshStatus();
+			}
+		}
+		else
+		{
+			System.out.println("I do not recognize that verb.");
+			AnalysePlayerInput(" ");
+		}
 
-		System.out.println(verb + ", " + directObject + ", " + indirectObject);
+		//System.out.println(verb + ", " + directObject + ", " + indirectObject);
 	}
 }
