@@ -100,37 +100,6 @@ class Player
 	{
 		this.damage = damage;
 	}
-
-	public void refreshStatus()
-	{
-		if(health >= 90)
-		{
-			this.status = "You are healthy.\nYou can be killed by a well-placed hit.";
-		}
-		else if(health >= 70)
-		{
-			this.status = "You are hurt.\nYou have some bruises and cuts, but I think you should not take any more damage.";
-		}
-		else if(health >= 40)
-		{
-			this.status = "Your condition is serious.\nI recommend seeing a doctor as soon as possible.";
-		}
-		else if(health >= 20)
-		{
-			this.status = "You are close to death.\nYour future is grim, you have a slim chance of surviving.";
-		}
-		else if(health >= 1)
-		{
-			this.status = "You are at death's door.";
-		}
-		else
-		{
-			this.status = "You are dead.";
-		}
-		System.out.println("Current status:\n" + status);
-		System.out.println("\n\n");
-		AnalysePlayerInput(" ");
-	}
 	
 	/* ----- PARSER CODE ----- */
 
@@ -211,7 +180,8 @@ class Player
 				case("look"):
 					// LookAround();
 				case("inventory"):
-					// openInventory();
+					openInventory();
+					break;
 				case("get"):
 				case("take"):
 					// takeObject();
@@ -225,7 +195,10 @@ class Player
 				case("diagnose"):
 					if(list.size() == 1)
 						refreshStatus();
+						break;
 			}
+			System.out.println("\n\n");
+			AnalysePlayerInput(" ");
 		}
 		else
 		{
@@ -234,5 +207,55 @@ class Player
 		}
 
 		//System.out.println(verb + ", " + directObject + ", " + indirectObject);
+	} // end of parser
+
+	public void moveTo(String destination)
+	{
+
+	}
+
+	public void openInventory()
+	{
+		if(inventory != null && inventory.size() > 0)
+		{
+			System.out.println("You are holding: \n");
+			for(String item : inventory)
+			{
+				System.out.println(item);
+			}
+		}
+		else
+		{
+			System.out.println("You currently have nothing. You won't get anywhere like this.");
+		}
+	}
+
+	public void refreshStatus()
+	{
+		if(health >= 90)
+		{
+			this.status = "You are healthy.\nYou can be killed by a well-placed hit.";
+		}
+		else if(health >= 70)
+		{
+			this.status = "You are hurt.\nYou have some bruises and cuts, but I think you should not take any more damage.";
+		}
+		else if(health >= 40)
+		{
+			this.status = "Your condition is serious.\nI recommend seeing a doctor as soon as possible.";
+		}
+		else if(health >= 20)
+		{
+			this.status = "You are close to death.\nYour future is grim, you have a slim chance of surviving.";
+		}
+		else if(health >= 1)
+		{
+			this.status = "You are at death's door.";
+		}
+		else
+		{
+			this.status = "You are dead.";
+		}
+		System.out.println("Current status:\n" + status);
 	}
 }

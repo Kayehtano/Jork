@@ -38,6 +38,11 @@ public class Room
 		return items;
 	}
 
+	public String getAdjacentRooms()
+	{
+		return adjacentRooms;
+	}
+
 	// Setters
 	public void setName(String roomName)
 	{
