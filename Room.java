@@ -9,17 +9,27 @@ public class Room
 	private String description; // description
 	private ArrayList<String> items; // items
 
+	// location
+	private int locX;
+	private int locY;
+
 	// room code
 	private String adjacentRooms;
 	private String[][] roomData;
 
+	// map
+	private int mapSize = 10;
+	private String[][] map = new String[mapSize][];
+
 	// Construct room
-	public Room(String roomName, String description, ArrayList<String> items, String adjacentRooms)
+	public Room(String roomName, String description, ArrayList<String> items, String adjacentRooms, int locX, int locY)
 	{
 		this.roomName = roomName;
 		this.description = description;
 		this.items = items;
 		this.adjacentRooms = adjacentRooms;
+		this.locX = locX;
+		this.locY = locY;
 	}
 
 	// Getters - get class values
@@ -175,6 +185,11 @@ public class Room
 
 		// if for whatever reason there is no direction
 		return "null";
+	}
+
+	public void updatePosition()
+	{
+		
 	}
 
 	// output items list to string, complete with punctuation 

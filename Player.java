@@ -12,11 +12,13 @@ class Player
 	private String status = "";
 	private Object currentWeapon;
 
-	// essential words
+	// essential variables
 	public static String verb;
 	public static String directObject;
 	public static String indirectObject;
 	public ArrayList<String> list = new ArrayList<String>();
+
+	private int dumdummeter = 0;
 
 	// constructors
 	public Player()
@@ -116,8 +118,7 @@ class Player
 		// make variables that will contain the words
 		int startIndex = 0;
 		int endIndex = 0;
-
-
+		list.clear();
 
 		// --- ACCEPTED WORDS --- //
 		ArrayList<String> verbs = new ArrayList<String>();
@@ -143,6 +144,14 @@ class Player
 		verbs.add("read");
 		verbs.add("diagnose");
 
+		// letter
+		if(answer.length() < 2)
+		{
+			System.out.println(answer);
+			System.out.println("... What?\n\n");
+			AnalysePlayerInput(" ");
+		}
+
 		// parse answer 
 		for(int i = 0; i < answer.length() - 1; i++)
 		{
@@ -162,11 +171,14 @@ class Player
 		// analyse words
 		for(int i = 0; i < list.size(); i++)
 		{
-			System.out.println(list.get(i));
+			System.out.print(list.get(i) + " ");
 		}
+		
+		System.out.println();
 
 		if(verbs.contains(list.get(0)))
 		{
+			dumdummeter = 0;
 			verb = list.get(0); // verb is first word
 			switch(verb)
 			{
@@ -176,37 +188,66 @@ class Player
 				case("attack"):
 				case("slash"):
 					// Attack();
+					break;
 				case("burn"):
 					// burn?
+					break;
 				case("look"):
 					// LookAround();
+					break;
 				case("inventory"):
 					openInventory();
 					break;
 				case("get"):
 				case("take"):
 					// takeObject();
+					break;
 				case("drop"):
 				case("throw"):
 					// dropObject();
+					break;
 				case("read"):
 					// readObject();
+					break;
 				case("buy"):
 					// shop
+					break;
 				case("diagnose"):
 					if(list.size() == 1)
+					{
 						refreshStatus();
 						break;
+					}
+					else
+					{
+						System.out.println("I only understand myself.");
+						break;
+					}
 			}
-			System.out.println("\n\n");
-			AnalysePlayerInput(" ");
 		}
 		else
 		{
-			System.out.println("I do not recognize that verb.");
-			AnalysePlayerInput(" ");
+			// had some funny
+			if(dumdummeter > 14)
+			{
+				System.out.println("Ok, bro that's not funny anymore pls stop.");
+			}
+			else if(dumdummeter > 9)
+			{
+				System.out.println("If you need help, why don't you read the manual?");
+			}
+			else if(dumdummeter > 4)
+			{
+				System.out.println("Oi, oi, do you know what to do?");
+			}
+			else
+			{
+				System.out.println("I do not recognize that verb.");
+			}
+			dumdummeter++;
 		}
-
+		System.out.println("\n\n");
+		AnalysePlayerInput(" ");
 		//System.out.println(verb + ", " + directObject + ", " + indirectObject);
 	} // end of parser
 
@@ -223,11 +264,11 @@ class Player
 		}
 		else if(list.size() > 2)
 		{
-
+			System.out.println("I only understand 'move' or 'go' to a specific direction.");
 		}
 		else
 		{
-			System.out.println("");
+			System.out.println("I could not understand what you are trying to say.");
 		}
 	}
 
