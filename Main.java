@@ -13,8 +13,6 @@ When creating rooms, make sure to instantiate items BEFORE the room.
 If the room has no items, enter 'none'.
 
 */
-
-
 // import classes
 import java.util.ArrayList;
 

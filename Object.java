@@ -10,10 +10,10 @@ public class Object
 	// parent object/room
 	private String parent;
 
-	// synonyms for object
-	private ArrayList<String> synonyms;
+	// synonyms for object (object can be referenced by these words too)
+	private String synonyms;
 
-	// adjectives for object (object can be referenced with these words as well)
+	// adjectives for object
 	private String adjectives;
 
 	// the description of the object
@@ -25,11 +25,8 @@ public class Object
 	// can you move this item
 	private boolean moveable;
 
-	// weapon attributes
-	private boolean isWeapon;
-	private float damage;
-
-	public Object(String name, String parent, ArrayList<String> synonyms, String adjectives, String description, boolean pickup, boolean moveable)
+	// constructor
+	public Object(String name, String parent, String synonyms, String adjectives, String description, boolean pickup, boolean moveable)
 	{
 		this.name = name;
 		this.parent = parent;
@@ -51,7 +48,7 @@ public class Object
 		return parent;
 	}
 
-	public ArrayList<String> getSynonyms()
+	public String getSynonyms()
 	{
 		return synonyms;
 	}
@@ -87,7 +84,7 @@ public class Object
 		this.parent = parent;
 	}
 
-	public void setSynonyms(ArrayList<String> synonyms)
+	public void setSynonyms(String synonyms)
 	{
 		this.synonyms = synonyms;
 	}

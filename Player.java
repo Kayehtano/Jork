@@ -16,7 +16,9 @@ class Player
 	public static String verb;
 	public static String directObject;
 	public static String indirectObject;
+	public ArrayList<String> list = new ArrayList<String>();
 
+	// constructors
 	public Player()
 	{
 		this.health = 100;
@@ -112,7 +114,6 @@ class Player
 			answer = JOptionPane.showInputDialog(question);
 
 		// make variables that will contain the words
-		ArrayList<String> list = new ArrayList<String>();
 		int startIndex = 0;
 		int endIndex = 0;
 
@@ -171,7 +172,7 @@ class Player
 			{
 				case("move"):
 				case("go"):
-					// Move();
+					moveTo();
 				case("attack"):
 				case("slash"):
 					// Attack();
@@ -209,9 +210,25 @@ class Player
 		//System.out.println(verb + ", " + directObject + ", " + indirectObject);
 	} // end of parser
 
-	public void moveTo(String destination)
+	public void moveTo()
 	{
+		if(list.size() == 2)
+		{
+			String destination = list.get(1);
+			switch(destination)
+			{
+				case("west"):
 
+			}
+		}
+		else if(list.size() > 2)
+		{
+
+		}
+		else
+		{
+			System.out.println("");
+		}
 	}
 
 	public void openInventory()
