@@ -41,7 +41,7 @@ class Main
 	public static void InitiateItemsAndRooms()
 	{
 		Items _PlayerRoom = new Items("rusty knife, cloak of disguise, 50 gold coins");
-		Room PlayerRoom = new Room("Inn of Cavv, Room 1120", "A small, decrepit room with a hard bed, wooden chair, and a dripping ceiling.", _PlayerRoom.items(), "Inn Hallway, S | Window, N | East Hallway, E");
+		Room PlayerRoom = new Room("Inn of Cavv, Room 1120", "A small, decrepit room with a hard bed, wooden chair, and a dripping ceiling.", _PlayerRoom.items(), "Inn Hallway, S");
 		PlayerRoom.ParseRooms();
 
 		System.out.println(PlayerRoom.toString());

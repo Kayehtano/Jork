@@ -215,7 +215,7 @@ public class Room
 		}
 		else // if we only have 1 item
 		{
-			output += roomData[0][0] + " to the " + checkVowel(roomData[1][0]) + ".";
+			output += roomData[0][0] + " to the " + getRoomDirection(roomData[1][0]) + ".";
 		}
 
 		return output;
