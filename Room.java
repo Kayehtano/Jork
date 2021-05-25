@@ -10,6 +10,7 @@ public class Room
 	private ArrayList<String> items; // items
 
 	private String adjacentRooms; // parseable to get access to other rooms
+	private String[][] roomData;
 
 	// Construct room
 	public Room(String roomName, String description, ArrayList<String> items, String adjacentRooms)
@@ -71,6 +72,58 @@ public class Room
 			return "";
 		}
 	} // end of checkVowel
+
+	// parse room (e.g. roomName, direction - )
+	// direction is N, W, E, or S, and - separates rooms
+	public void ParseRooms()
+	{
+		String parse = this.adjacentRooms;
+		int startIndex = 0;
+		int endIndex = 0;
+		int counter = 0;
+		
+		for(int i = 0; i < parse.length(); i++) // find # of rooms
+		{
+			if(parse.charAt(i) == '|')
+			{
+				counter++;
+			}
+		}
+
+		// System.out.println(counter); debug to find that the counter works
+		// initialize data
+		roomData = new String[2][counter + 1];
+		int dataCounter = 0;
+
+		for(int i = 0; i < parse.length() - 1; i++)
+		{
+			if(parse.charAt(i + 1) == ',') // get room name
+			{
+				endIndex = i + 1;
+				roomData[0][dataCounter] = parse.substring(startIndex, endIndex);
+				startIndex = i + 3;
+			}
+			else if(parse.charAt(i + 1) == '|') // get direction
+			{
+				endIndex = i + 1;
+				roomData[1][dataCounter] = parse.substring(startIndex, endIndex);
+				dataCounter++;
+				startIndex = i + 3;
+			}
+			else if(i == parse.length() - 2) // if item is last in list
+			{
+				roomData[1][dataCounter] = parse.substring(startIndex);
+				dataCounter++;
+				startIndex = i + 3;
+			}
+		} // end for loop
+
+		/* 
+			Room data debug
+			System.out.println(roomData[0][2]);
+			System.out.println(roomData[1][2]);
+		*/
+	} // end function
 
 	// output items list to string, complete with punctuation 
 	// and grammar
