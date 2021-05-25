@@ -75,46 +75,68 @@ public class Room
 
 	// parse room (e.g. roomName, direction - )
 	// direction is N, W, E, or S, and - separates rooms
+	// convert String to 2d array
 	public void ParseRooms()
 	{
+		// create parsing variables
 		String parse = this.adjacentRooms;
 		int startIndex = 0;
 		int endIndex = 0;
 		int counter = 0;
 		
-		for(int i = 0; i < parse.length(); i++) // find # of rooms
+		// find # of rooms
+		for(int i = 0; i < parse.length(); i++)
 		{
-			if(parse.charAt(i) == '|')
+			if(parse.charAt(i) == '|') // check for separator
 			{
+				// increase counter by 1
 				counter++;
 			}
 		}
 
 		// System.out.println(counter); debug to find that the counter works
+
 		// initialize data
 		roomData = new String[2][counter + 1];
+
+		// initialize position couner
 		int dataCounter = 0;
 
+		// parse through String
 		for(int i = 0; i < parse.length() - 1; i++)
 		{
 			if(parse.charAt(i + 1) == ',') // get room name
 			{
+				// set ending index to comma
 				endIndex = i + 1;
+				
+				// grab name
 				roomData[0][dataCounter] = parse.substring(startIndex, endIndex);
+
+				// put start index after comma
 				startIndex = i + 3;
 			}
 			else if(parse.charAt(i + 1) == '|') // get direction
 			{
+				// set end index to separator
 				endIndex = i + 1;
+
+				// grab direction
 				roomData[1][dataCounter] = parse.substring(startIndex, endIndex);
+
+				// increase column pos by 1
 				dataCounter++;
+
+				// put start index after separator
 				startIndex = i + 3;
 			}
 			else if(i == parse.length() - 2) // if item is last in list
 			{
+				// grab last item direction
 				roomData[1][dataCounter] = parse.substring(startIndex);
+
+				// increase count by 1
 				dataCounter++;
-				startIndex = i + 3;
 			}
 		} // end for loop
 
@@ -125,6 +147,7 @@ public class Room
 		*/
 	} // end function
 
+	// private function to convert direction characters to full name
 	private String getRoomDirection(String e)
 	{
 		if(e.charAt(0) == 'N')
@@ -143,6 +166,8 @@ public class Room
 		{
 			return "East";
 		}
+
+		// if for whatever reason there is no direction
 		return "null";
 	}
 
