@@ -190,19 +190,19 @@ public class Room
 	{
 		if(e.charAt(0) == 'N')
 		{
-			return "North";
+			return "north";
 		}
 		else if(e.charAt(0) == 'S')
 		{
-			return "South";
+			return "south";
 		}
 		else if(e.charAt(0) == 'W')
 		{
-			return "West";
+			return "west";
 		}
 		else if(e.charAt(0) == 'E')
 		{
-			return "East";
+			return "east";
 		}
 
 		// if for whatever reason there is no direction
