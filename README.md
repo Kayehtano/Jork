@@ -32,3 +32,4 @@ In order to progress through the game, the player types in commands. For example
 
 ## Changelog
 * Made it so that you can only go to rooms that are explicitly accessible to the current room you're in.
+* Added more rooms.
