@@ -87,6 +87,7 @@ class Main
 	// the player moves by switching between rooms on the 2d array
 	public static void moveRooms(char direction)
 	{
+		// below is a chunk of code that works and i dont really know how
 		int expectedX = 0;
 		int expectedY = 0;
 		switch(direction)
