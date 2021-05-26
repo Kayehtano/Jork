@@ -53,35 +53,66 @@ class Main
 	{
 		// INITIALIZE ROOMS
 		Room startingRoom = new Room("Room 1120", "A small room with a bed, table, and chair. On the table is a nameplate that reads: " + InGameName, "hallway, S", 0, 0);
-		RefreshMap(startingRoom);
+		AddRoomToMap(startingRoom);
 		
 		currentRoom = startingRoom;
 		
-		Room southHallway = new Room("South Hallway", "A long, narrow hallway that connects the inn rooms to the other rooms. A bit of light creeps in from one side, probably from the tavern downstairs.", "Room 1120, N | lobby, E", 1, 0);
-		RefreshMap(southHallway);
+		Room southHallway = new Room("South Hallway", "A long, narrow hallway that connects the inn rooms to the other rooms. A bit of light creeps in from one side, probably from the lobby downstairs.", "Room 1120, N | lobby, E", 1, 0);
+		AddRoomToMap(southHallway);
 
 		Room lobby = new Room("The Vine Inn", "The lobby level of the inn. The inn also doubles as an adventurer's guild. You can find quests to do at the front desk, or you can walk around the city.", "stairs, W | exit, S", 1, 1);
-		RefreshMap(lobby);
+		AddRoomToMap(lobby);
 
 		Room innEntrance = new Room("Front of the Inn", "In front of you stands the famous inn and adventurer's guild named 'The Vine Inn'. It is famous for being backed by high-level adventurers. Around you, people are walking happily with rows of shops lined up in front of the buildings.", "guild/inn, N | street, W | street, E", 2, 1);
-		RefreshMap(innEntrance);
+		AddRoomToMap(innEntrance);
+		
+		Room streetEnd1 = new Room("Street", "Buildings and various races of people surround you. It is loud as people walk around you trying to get by in life. The west end of the street is blocked by the city walls.", "inn entrance, E", 2, 0);
+		AddRoomToMap(streetEnd1);
+
+		Room street1 = new Room("Street", "Buildings and various races of people surround you. ", "inn entrance, W | street, E", 2, 2);
+		AddRoomToMap(street1);
+
+		Room street2 = new Room("Street", "Buildings and various races of people surround you. ", "street, W | equipment shop, N | street, E", 2, 3);
+		AddRoomToMap(street2);
 
 		// INITIALIZE ACCESS
 		startingRoom.addAccessibleRoom(southHallway);
+
 		southHallway.addAccessibleRoom(startingRoom);
 		southHallway.addAccessibleRoom(lobby);
+
 		lobby.addAccessibleRoom(southHallway);
 		lobby.addAccessibleRoom(innEntrance);
+
 		innEntrance.addAccessibleRoom(lobby);
+		innEntrance.addAccessibleRoom(streetEnd1);
+		innEntrance.addAccessibleRoom(street1);
+
+		streetEnd1.addAccessibleRoom(innEntrance);
+
+		street1.addAccessibleRoom(innEntrance);
+		street1.addAccessibleRoom(street2);
+
+		street2.addAccessibleRoom(street1);
+		// street2.addAccessibleRoom(street3);
 
 		// end init and begin game
-		System.out.println(currentRoom.toString());
+		System.out.println("\n\n\n" + currentRoom.toString());
 	}
 
 	// add room to map
-	public static void RefreshMap(Room room)
+	public static void AddRoomToMap(Room room)
 	{
-		map[room.getX()][room.getY()] = room;
+		if(map[room.getX()][room.getY()] == null)
+		{
+			map[room.getX()][room.getY()] = room;
+			System.out.println("Added room " + room.getName() + " successfully!");
+		}
+		else
+		{
+			// debug if room is already full
+			System.out.println("Couldn't add room " + room.getName() + ": Taken\n");
+		}
 	}
 
 	// the player moves by switching between rooms on the 2d array
