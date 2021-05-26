@@ -89,13 +89,20 @@ public class Room
 	{
 		if(Character.isLetter(word.charAt(0))) // check if char is a letter
 		{
-			if("AEIOUaeiou".indexOf(word.charAt(0)) != -1) // check if word has any vowels
+			if(word.charAt(word.length() - 1) != 's') // check if word is not plural
 			{
-				return "an "; // return an is true
+				if("AEIOUaeiou".indexOf(word.charAt(0)) != -1) // check if word has any vowels
+				{
+					return "is an "; // return an is true
+				}
+				else
+				{
+					return "is a "; // return a if false
+				}
 			}
 			else
 			{
-				return "a "; // return a if false
+				return "are ";
 			}
 		}
 		else // check if char is a number
@@ -213,7 +220,7 @@ public class Room
 		String output = this.roomName + "\n\n" + 
 						this.description + "\n";
 
-		if(!convert.get(0).equals("none"))
+		if(convert != null && !convert.isEmpty())
 		{
 			if(convert.size() > 1) // if we have multiple items
 			{
@@ -232,8 +239,10 @@ public class Room
 			}
 		}
 
+		ParseRooms();
+
 		// location info
-		output += "\n\nThere is " + checkVowel(roomData[0][0]);
+		output += "\n\nThere " + checkVowel(roomData[0][0]);
 
 		// add possible locations to move to
 		int numOfColumns = roomData[0].length;
