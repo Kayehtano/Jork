@@ -28,3 +28,4 @@ In order to progress through the game, the player types in commands. For example
 
 ## Known Bugs
 * ~~There is a minor bug that the grammar is incorrect if the first item is plural. Really minor.~~ Fixed!
+* Some commands are case-sensitive (e.g. `move South` should be `move south` or it won't work)

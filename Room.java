@@ -17,16 +17,11 @@ public class Room
 	private String adjacentRooms;
 	private String[][] roomData;
 
-	// map
-	private int mapSize = 10;
-	private String[][] map = new String[mapSize][];
-
 	// Construct room
-	public Room(String roomName, String description, ArrayList<String> items, String adjacentRooms, int locX, int locY)
+	public Room(String roomName, String description, String adjacentRooms, int locX, int locY)
 	{
 		this.roomName = roomName;
 		this.description = description;
-		this.items = items;
 		this.adjacentRooms = adjacentRooms;
 		this.locX = locX;
 		this.locY = locY;
@@ -53,6 +48,16 @@ public class Room
 		return adjacentRooms;
 	}
 
+	public int getX()
+	{
+		return locX;
+	}
+	
+	public int getY()
+	{
+		return locY;
+	}
+
 	// Setters
 	public void setName(String roomName)
 	{
@@ -64,9 +69,19 @@ public class Room
 		this.description = description;
 	}
 
-	public void setItems(ArrayList<String> items)
+	public void addItemToParent(String name)
 	{
-		this.items = items;
+		this.items.add(name);
+	}
+
+	public void removeItemFromParent(String name)
+	{
+		this.items.remove(name);
+	}
+
+	public void clearItems()
+	{
+		this.items.clear();
 	}
 
 	// thanks to StackOverflow
@@ -187,15 +202,11 @@ public class Room
 		return "null";
 	}
 
-	public void updatePosition()
-	{
-		
-	}
-
 	// output items list to string, complete with punctuation 
 	// and grammar
 	public String toString()
 	{
+		// item info
 		// create variables for method
 		ArrayList<String> convert = new ArrayList<String>();
 		convert = items; // convert is set to ArrayList of items
@@ -221,6 +232,7 @@ public class Room
 			}
 		}
 
+		// location info
 		output += "\n\nThere is " + checkVowel(roomData[0][0]);
 
 		// add possible locations to move to

@@ -259,7 +259,24 @@ class Player
 			switch(destination)
 			{
 				case("west"):
-
+				case("w"):
+					Main.moveRooms('w');
+					break;
+				case("south"):
+				case("s"):
+					Main.moveRooms('s');
+					break;
+				case("north"):
+				case("n"):
+					Main.moveRooms('n');
+					break;
+				case("east"):
+				case("e"):
+					Main.moveRooms('e');
+					break;
+				default:
+					System.out.println("... where now?");
+					break;
 			}
 		}
 		else if(list.size() > 2)
