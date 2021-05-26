@@ -51,35 +51,37 @@ class Main
 	// INIT ALL ROOMS
 	public static void InitiateRooms()
 	{
+		// INITIALIZE ROOMS
 		Room startingRoom = new Room("Room 1120", "A small room with a bed, table, and chair. On the table is a nameplate that reads: " + InGameName, "hallway, S", 0, 0);
 		RefreshMap(startingRoom);
+		
 		currentRoom = startingRoom;
 		
-		Room southHallway = new Room("South Hallway", "A long, narrow hallway that connects the inn rooms to the other rooms. A bit of light creeps in from one side, probably from the tavern downstairs.", "Room 1120, N | tavern, E", 1, 0);
+		Room southHallway = new Room("South Hallway", "A long, narrow hallway that connects the inn rooms to the other rooms. A bit of light creeps in from one side, probably from the tavern downstairs.", "Room 1120, N | lobby, E", 1, 0);
 		RefreshMap(southHallway);
 
-		Room tavern = new Room("The Vine Inn", "A long, narrow hallway that connects the inn rooms to the other rooms. A bit of light creeps in from one side, probably from the tavern downstairs.", "stairs, W | exit, S", 1, 1);
-		RefreshMap(tavern);
+		Room lobby = new Room("The Vine Inn", "The lobby level of the inn. The inn also doubles as an adventurer's guild. You can find quests to do at the front desk, or you can walk around the city.", "stairs, W | exit, S", 1, 1);
+		RefreshMap(lobby);
 
+		Room innEntrance = new Room("Front of the Inn", "In front of you stands the famous inn and adventurer's guild named 'The Vine Inn'. It is famous for being backed by high-level adventurers. Around you, people are walking happily with rows of shops lined up in front of the buildings.", "guild/inn, N | street, W | street, E", 2, 1);
+		RefreshMap(innEntrance);
+
+		// INITIALIZE ACCESS
+		startingRoom.addAccessibleRoom(southHallway);
+		southHallway.addAccessibleRoom(startingRoom);
+		southHallway.addAccessibleRoom(lobby);
+		lobby.addAccessibleRoom(southHallway);
+		lobby.addAccessibleRoom(innEntrance);
+		innEntrance.addAccessibleRoom(lobby);
+
+		// end init and begin game
 		System.out.println(currentRoom.toString());
 	}
 
+	// add room to map
 	public static void RefreshMap(Room room)
 	{
-		System.out.println();
 		map[room.getX()][room.getY()] = room;
-
-		// for(int i = 0; i < map.length; i++)
-		// {
-		// 	for(int j = 0; j < map[i].length; j++)
-		// 	{
-		// 		if(map[i][j] != null)
-		// 			System.out.print(map[i][j].getName() + " ");
-		// 		else
-		// 			System.out.print("null ");
-		// 	}
-		// 	System.out.println();
-		// }
 	}
 
 	// the player moves by switching between rooms on the 2d array
@@ -92,7 +94,7 @@ class Main
 			case('n'):
 				expectedX = pLocX - 1;
 				expectedY = pLocY;
-				if(expectedX >= 0 && map[expectedX][expectedY] != null)
+				if(expectedX >= 0 && map[expectedX][expectedY] != null && currentRoom.getAccessibleRooms().contains(map[expectedX][expectedY]))
 				{
 					currentRoom = map[expectedX][expectedY];
 					System.out.println(currentRoom.toString());
@@ -107,7 +109,7 @@ class Main
 			case('e'):
 				expectedX = pLocX;
 				expectedY = pLocY + 1;
-				if(expectedY <= mapSize && map[expectedX][expectedY] != null)
+				if(expectedY <= mapSize && map[expectedX][expectedY] != null && currentRoom.getAccessibleRooms().contains(map[expectedX][expectedY]))
 				{
 					currentRoom = map[expectedX][expectedY];
 					System.out.println(currentRoom.toString());
@@ -122,7 +124,7 @@ class Main
 			case('s'):
 				expectedX = pLocX + 1;
 				expectedY = pLocY;
-				if(expectedX <= mapSize && map[expectedX][expectedY] != null)
+				if(expectedX <= mapSize && map[expectedX][expectedY] != null && currentRoom.getAccessibleRooms().contains(map[expectedX][expectedY]))
 				{
 					currentRoom = map[expectedX][expectedY];
 					System.out.println(currentRoom.toString());
@@ -137,7 +139,7 @@ class Main
 			case('w'):
 				expectedX = pLocX;
 				expectedY = pLocY - 1;
-				if(expectedY >= 0 && map[expectedX][expectedY] != null)
+				if(expectedY >= 0 && map[expectedX][expectedY] != null && currentRoom.getAccessibleRooms().contains(map[expectedX][expectedY]))
 				{
 					currentRoom = map[expectedX][expectedY];
 					System.out.println(currentRoom.toString());

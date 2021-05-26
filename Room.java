@@ -7,15 +7,16 @@ public class Room
 	private String roomName; // name
 	
 	private String description; // description
-	private ArrayList<String> items; // items
+	private ArrayList<String> items = new ArrayList<String>(); // items
 
 	// location
 	private int locX;
 	private int locY;
 
-	// room code
+	// room variables
 	private String adjacentRooms;
 	private String[][] roomData;
+	private ArrayList<Room> accessibleRooms = new ArrayList<Room>();
 
 	// Construct room
 	public Room(String roomName, String description, String adjacentRooms, int locX, int locY)
@@ -58,6 +59,11 @@ public class Room
 		return locY;
 	}
 
+	public ArrayList<Room> getAccessibleRooms()
+	{
+		return accessibleRooms;
+	}
+
 	// Setters
 	public void setName(String roomName)
 	{
@@ -82,6 +88,11 @@ public class Room
 	public void clearItems()
 	{
 		this.items.clear();
+	}
+
+	public void addAccessibleRoom(Room room)
+	{
+		this.accessibleRooms.add(room);
 	}
 
 	// thanks to StackOverflow
