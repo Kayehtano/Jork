@@ -1,4 +1,4 @@
-public class Weapon extends Object
+public class Weapon extends Item
 {
 	private double damageMultiplier;
 	private int durability;
@@ -6,7 +6,7 @@ public class Weapon extends Object
 	// constructors
 	public Weapon(String name, Room parent, String synonyms, String adjectives, String description, boolean pickup, boolean moveable, double damageMultiplier, int durability)
 	{
-		super(name, parent, synonyms, adjectives, description, pickup, moveable);
+		super(name, parent, synonyms, description, pickup, moveable);
 		this.damageMultiplier = damageMultiplier;
 		this.durability = durability;
 	}

@@ -17,8 +17,9 @@ import javax.swing.*;
 
 class Main
 {
+	public static Player Joe = new Player();
 
-	public static String InGameName = ""; // instantiate public name variable
+	public static String InGameName = "Joe"; // instantiate public name variable
 
 	// map
 	public static int mapSize = 10;
@@ -34,8 +35,8 @@ class Main
 	{
 		InitiateRooms();
 		// GetPlayerName();
-		Player Joe = new Player();
-		Joe.AnalysePlayerInput("");		
+		Joe.AnalysePlayerInput("");	
+		Joe.setName(InGameName);	
 	}
 
 	public static void GetPlayerName()
@@ -98,6 +99,7 @@ class Main
 
 		// end init and begin game
 		System.out.println("\n\n\n" + currentRoom.toString());
+		Joe.setRoom(currentRoom);
 	}
 
 	// add room to map
@@ -132,6 +134,7 @@ class Main
 					System.out.println(currentRoom.toString());
 					pLocX = expectedX;
 					pLocY = expectedY;
+					Joe.setRoom(currentRoom);
 				}
 				else
 				{
@@ -147,6 +150,7 @@ class Main
 					System.out.println(currentRoom.toString());
 					pLocX = expectedX;
 					pLocY = expectedY;
+					Joe.setRoom(currentRoom);
 				}
 				else
 				{
@@ -162,6 +166,7 @@ class Main
 					System.out.println(currentRoom.toString());
 					pLocX = expectedX;
 					pLocY = expectedY;
+					Joe.setRoom(currentRoom);
 				}
 				else
 				{
@@ -177,6 +182,7 @@ class Main
 					System.out.println(currentRoom.toString());
 					pLocX = expectedX;
 					pLocY = expectedY;
+					Joe.setRoom(currentRoom);
 				}
 				else
 				{

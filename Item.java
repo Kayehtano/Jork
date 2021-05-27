@@ -2,19 +2,16 @@
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class Thing
+public class Item
 {
 	// object name
 	private String name;
 
-	// parent object/room
+	// parent room
 	private Room parent;
 
 	// synonyms for object (object can be referenced by these words too)
 	private String synonyms;
-
-	// adjectives for object
-	private String adjectives;
 
 	// the description of the object
 	private String description;
@@ -26,12 +23,11 @@ public class Thing
 	private boolean moveable;
 
 	// constructor
-	public Thing(String name, Room parent, String synonyms, String adjectives, String description, boolean pickup, boolean moveable)
+	public Item(String name, Room parent, String synonyms, String description, boolean pickup, boolean moveable)
 	{
 		this.name = name;
 		this.parent = parent;
 		this.synonyms = synonyms;
-		this.adjectives = adjectives;
 		this.description = description;
 		this.pickup = pickup;
 		this.moveable = moveable;
@@ -51,11 +47,6 @@ public class Thing
 	public String getSynonyms()
 	{
 		return synonyms;
-	}
-
-	public String getAdjectives()
-	{
-		return adjectives;
 	}
 
 	public String getDescription()
@@ -87,11 +78,6 @@ public class Thing
 	public void setSynonyms(String synonyms)
 	{
 		this.synonyms = synonyms;
-	}
-	
-	public void setAdjectives(String adjectives)
-	{
-		this.adjectives = adjectives;
 	}
 
 	public void setDescription(String description)

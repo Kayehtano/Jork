@@ -4,6 +4,7 @@ import javax.swing.*;
 
 class Player
 {
+	private String name;
 	private int health = 100;
 	private int level = 1;
 	private double weightLimit = 10.0;
@@ -11,6 +12,7 @@ class Player
 	private float damage = 5.0f; // 5.0 is base damage
 	private String status = "";
 	private Object currentWeapon;
+	private Room currentRoom;
 
 	// essential variables
 	public static String verb;
@@ -23,6 +25,7 @@ class Player
 	// constructors
 	public Player()
 	{
+		this.name = "Joe";
 		this.health = 100;
 		this.level = 1;
 		this.weightLimit = 10.0;
@@ -32,8 +35,9 @@ class Player
 		this.currentWeapon = null;
 	}
 
-	public Player(int health, int level, double weightLimit, ArrayList<String> inventory, float damage, String status, Object currentWeapon)
+	public Player(String name, int health, int level, double weightLimit, ArrayList<String> inventory, float damage, String status, Object currentWeapon)
 	{
+		this.name = name;
 		this.health = health;
 		this.level = level;
 		this.weightLimit = weightLimit;
@@ -44,6 +48,11 @@ class Player
 	}
 
 	// GETTERS
+	public String getName()
+	{
+		return name;
+	}
+
 	public int getHP()
 	{
 		return health;
@@ -79,7 +88,17 @@ class Player
 		return currentWeapon.getName();
 	}
 
+	public Room getRoom()
+	{
+		return currentRoom;
+	}
+
 	// SETTERS
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
 	public void setHP(int health)
 	{
 		this.health = health;
@@ -103,6 +122,11 @@ class Player
 	public void setDamage(float damage)
 	{
 		this.damage = damage;
+	}
+
+	public void setRoom(Room room)
+	{
+		this.currentRoom = room;
 	}
 	
 	/* ----- PARSER CODE ----- */
@@ -176,6 +200,11 @@ class Player
 		
 		System.out.println();
 
+		// if(list.get(1).equals("the") || list.get(1).equals("to"))
+		// {
+		// 	indirectObject = list.get(2);
+		// }
+
 		if(verbs.contains(list.get(0)))
 		{
 			dumdummeter = 0;
@@ -193,7 +222,15 @@ class Player
 					// burn?
 					break;
 				case("look"):
-					// LookAround();
+					if(list.size() == 1 || list.get(1).equals("around"))
+					{
+						System.out.println(currentRoom.toString());
+					}
+					else
+					{
+						System.out.println("I only understood as far as having to look somewhere.");
+						break;
+					}
 					break;
 				case("inventory"):
 					openInventory();
@@ -230,7 +267,7 @@ class Player
 			// had some funny
 			if(dumdummeter > 14)
 			{
-				System.out.println("Ok, bro that's not funny anymore pls stop.");
+				System.out.println("Ok, bro that's not funny anymore pls stop. >:(");
 			}
 			else if(dumdummeter > 9)
 			{
@@ -276,7 +313,6 @@ class Player
 					break;
 				default:
 					System.out.println("... where now?");
-					break;
 			}
 		}
 		else if(list.size() > 2)
@@ -331,6 +367,9 @@ class Player
 		{
 			this.status = "You are dead.";
 		}
-		System.out.println("Current status:\n" + status);
+		System.out.println("Current status:\n\n" + 
+						   "Name: " + name + "\n" +
+						   "Level: " + this.level +
+						   "\n\n" + status);
 	}
 }
