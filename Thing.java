@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class Object
+public class Thing
 {
 	// object name
 	private String name;
@@ -26,7 +26,7 @@ public class Object
 	private boolean moveable;
 
 	// constructor
-	public Object(String name, Room parent, String synonyms, String adjectives, String description, boolean pickup, boolean moveable)
+	public Thing(String name, Room parent, String synonyms, String adjectives, String description, boolean pickup, boolean moveable)
 	{
 		this.name = name;
 		this.parent = parent;

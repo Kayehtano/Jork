@@ -35,7 +35,7 @@ class Main
 		InitiateRooms();
 		// GetPlayerName();
 		Player Joe = new Player();
-		Joe.AnalysePlayerInput("");
+		Joe.AnalysePlayerInput("");		
 	}
 
 	public static void GetPlayerName()
