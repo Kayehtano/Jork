@@ -7,8 +7,8 @@ public class Item
 	// object name
 	private String name;
 
-	// parent room
-	private Room parent;
+	// parent object
+	private Object parent;
 
 	// synonyms for object (object can be referenced by these words too)
 	private String synonyms;
@@ -23,7 +23,7 @@ public class Item
 	private boolean moveable;
 
 	// constructor
-	public Item(String name, Room parent, String synonyms, String description, boolean pickup, boolean moveable)
+	public Item(String name, Object parent, String synonyms, String description, boolean pickup, boolean moveable)
 	{
 		this.name = name;
 		this.parent = parent;
@@ -39,7 +39,7 @@ public class Item
 		return name;
 	}
 
-	public Room getParent()
+	public Object getParent()
 	{
 		return parent;
 	}
@@ -70,9 +70,9 @@ public class Item
 		this.name = name;
 	}
 
-	public void setParent(Room room)
+	public void setParent(Object parent)
 	{
-		this.parent = room;
+		this.parent = parent;
 	}
 
 	public void setSynonyms(String synonyms)

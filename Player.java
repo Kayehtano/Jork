@@ -8,10 +8,10 @@ class Player
 	private int health = 100;
 	private int level = 1;
 	private double weightLimit = 10.0;
-	private ArrayList<String> inventory;
+	private ArrayList<Item> inventory;
 	private float damage = 5.0f; // 5.0 is base damage
 	private String status = "";
-	private Object currentWeapon;
+	private Item currentWeapon;
 	private Room currentRoom;
 
 	// essential variables
@@ -35,7 +35,7 @@ class Player
 		this.currentWeapon = null;
 	}
 
-	public Player(String name, int health, int level, double weightLimit, ArrayList<String> inventory, float damage, String status, Object currentWeapon)
+	public Player(String name, int health, int level, double weightLimit, ArrayList<Item> inventory, float damage, String status, Item currentWeapon)
 	{
 		this.name = name;
 		this.health = health;
@@ -68,7 +68,7 @@ class Player
 		return weightLimit;
 	}
 
-	public ArrayList<String> getInventory()
+	public ArrayList<Item> getInventory()
 	{
 		return inventory;
 	}
@@ -114,9 +114,9 @@ class Player
 		this.weightLimit = weightLimit;
 	}
 
-	public void setInventory(ArrayList<String> inventory)
+	public void addToInventory(Item item)
 	{
-		this.inventory = inventory;
+		this.inventory.add(item);
 	}
 
 	public void setDamage(float damage)
@@ -168,12 +168,17 @@ class Player
 		verbs.add("read");
 		verbs.add("diagnose");
 
+		// --- ACCEPTED PREPOSITIOS --- //
+		ArrayList<String> preps = new ArrayList<String>();
+
+		preps.add()
+
 		// letter
 		if(answer.length() < 2)
 		{
 			System.out.println(answer);
 			System.out.println("... What?\n\n");
-			AnalysePlayerInput(" ");
+			AnalysePlayerInput("");
 		}
 
 		// parse answer 
@@ -200,10 +205,24 @@ class Player
 		
 		System.out.println();
 
-		// if(list.get(1).equals("the") || list.get(1).equals("to"))
-		// {
-		// 	indirectObject = list.get(2);
-		// }
+		// return if there's only one word
+		if(list.size() < 2)
+		{
+			System.out.println("... What?\n\n");
+			AnalysePlayerInput("");
+		}
+		
+		// get indirect object
+		if(list.size() > 2 && list.get(1).equals("the") || list.get(1).equals("to"))
+		{
+			// second word is considered preposition
+			indirectObject = list.get(2);
+		}
+		else
+		{
+			indirectObject = list.get(1);
+		}
+
 
 		if(verbs.contains(list.get(0)))
 		{
@@ -284,7 +303,7 @@ class Player
 			dumdummeter++;
 		}
 		System.out.println("\n\n");
-		AnalysePlayerInput(" ");
+		AnalysePlayerInput("");
 		//System.out.println(verb + ", " + directObject + ", " + indirectObject);
 	} // end of parser
 
@@ -330,14 +349,14 @@ class Player
 		if(inventory != null && inventory.size() > 0)
 		{
 			System.out.println("You are holding: \n");
-			for(String item : inventory)
+			for(Item item : inventory)
 			{
-				System.out.println(item);
+				System.out.println(item.getName());
 			}
 		}
 		else
 		{
-			System.out.println("You currently have nothing. You won't get anywhere like this.");
+			System.out.println("You currently have nothing. At least have a sword or something.");
 		}
 	}
 

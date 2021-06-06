@@ -31,5 +31,5 @@ In order to progress through the game, the player types in commands. For example
 * Some commands are case-sensitive (e.g. `move South` should be `move south` or it won't work)
 
 ## Changelog
-* Made it so that you can only go to rooms that are explicitly accessible to the current room you're in.
-* Added more rooms.
+* 10% done with items.
+* Will complete map later.

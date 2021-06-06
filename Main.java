@@ -35,8 +35,10 @@ class Main
 	{
 		InitiateRooms();
 		// GetPlayerName();
-		Joe.AnalysePlayerInput("");	
-		Joe.setName(InGameName);	
+		System.out.println("\n\n\n");
+		OutputMap();
+		// Joe.AnalysePlayerInput("");	
+		// Joe.setName(InGameName);
 	}
 
 	public static void GetPlayerName()
@@ -48,6 +50,16 @@ class Main
 			InGameName = "Joe"; // default name
 		}
 	} // end of GetPlayerName func
+
+	// INIT ALL ITEMS
+	public static void InitiateItems()
+	{
+		String instructions = "The Guide to Jork\n\n" + 
+		"This guide well teach you all about how to " + 
+		"beat the game! The aim is to collect all hidden " + 
+		"treasures ";
+		// Book guide = new Book("PlayerGuide", currentRoom, "instructions, guide", "The Guide Book to Jork for Dummies", true, false, instructions);
+	}
 
 	// INIT ALL ROOMS
 	public static void InitiateRooms()
@@ -76,6 +88,12 @@ class Main
 		Room street2 = new Room("Street", "Buildings and various races of people surround you. ", "street, W | equipment shop, N | street, E", 2, 3);
 		AddRoomToMap(street2);
 
+		Room streetEnd2 = new Room("Street", "Buildings and various races of people surround you. It is loud as people walk around you trying to get by in life. The east end of the street is blocked by the city walls.", "street, W | alleyway, S", 2, 4);
+		AddRoomToMap(streetEnd2);
+
+		Room street3 = new Room("Street", "Buildings and various races of people surround you.", "inn entrance, N | city gate, S", 3, 1);
+		AddRoomToMap(street3);
+
 		// INITIALIZE ACCESS
 		startingRoom.addAccessibleRoom(southHallway);
 
@@ -88,6 +106,7 @@ class Main
 		innEntrance.addAccessibleRoom(lobby);
 		innEntrance.addAccessibleRoom(streetEnd1);
 		innEntrance.addAccessibleRoom(street1);
+		innEntrance.addAccessibleRoom(street3);
 
 		streetEnd1.addAccessibleRoom(innEntrance);
 
@@ -95,7 +114,14 @@ class Main
 		street1.addAccessibleRoom(street2);
 
 		street2.addAccessibleRoom(street1);
-		// street2.addAccessibleRoom(street3);
+		street2.addAccessibleRoom(streetEnd2);
+		// street2.addAccessibleRoom(shop);
+
+		streetEnd2.addAccessibleRoom(street2);
+		// streetEnd2.addAccessibleRoom(alleyway);
+
+		street3.addAccessibleRoom(innEntrance);
+		// street3.addAccessibleRoom(cityGate);
 
 		// end init and begin game
 		System.out.println("\n\n\n" + currentRoom.toString());
@@ -189,6 +215,25 @@ class Main
 					System.out.println("You cannot go there.");
 				}
 				break;
+		}
+	}
+
+	// map debugging purposes
+	public static void OutputMap()
+	{
+		// IF ROOM IS TAKEN OUTPUT 'TAKEN'
+		// IF ROOM IS NULL OUTPUT 'EMPTY'
+
+		for(int i = 0; i < mapSize; i++)
+		{
+			for(int j = 0; j < mapSize; j++)
+			{
+				if(map[i][j] != null)
+					System.out.print("taken ");
+				else
+					System.out.print("empty ");
+			}
+			System.out.println();
 		}
 	}
 } // end of class
