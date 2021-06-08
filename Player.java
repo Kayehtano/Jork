@@ -16,8 +16,7 @@ class Player
 
 	// essential variables
 	public static String verb;
-	public static String directObject;
-	public static String indirectObject;
+	public static String noun;
 	public ArrayList<String> list = new ArrayList<String>();
 
 	private int dumdummeter = 0;
@@ -168,12 +167,7 @@ class Player
 		verbs.add("read");
 		verbs.add("diagnose");
 
-		// --- ACCEPTED PREPOSITIOS --- //
-		ArrayList<String> preps = new ArrayList<String>();
-
-		preps.add()
-
-		// letter
+		// if the answer is only a letter
 		if(answer.length() < 2)
 		{
 			System.out.println(answer);
@@ -206,28 +200,23 @@ class Player
 		System.out.println();
 
 		// return if there's only one word
-		if(list.size() < 2)
+		if(list.size() < 2 && !verbs.contains(list.get(0)))
 		{
 			System.out.println("... What?\n\n");
 			AnalysePlayerInput("");
 		}
-		
-		// get indirect object
-		if(list.size() > 2 && list.get(1).equals("the") || list.get(1).equals("to"))
+
+		// set variables
+		verb = list.get(0);
+
+		if(list.size() == 2)
 		{
-			// second word is considered preposition
-			indirectObject = list.get(2);
-		}
-		else
-		{
-			indirectObject = list.get(1);
+			noun = list.get(1);
 		}
 
-
-		if(verbs.contains(list.get(0)))
+		if(verbs.contains(verb))
 		{
 			dumdummeter = 0;
-			verb = list.get(0); // verb is first word
 			switch(verb)
 			{
 				case("move"):
@@ -241,7 +230,7 @@ class Player
 					// burn?
 					break;
 				case("look"):
-					if(list.size() == 1 || list.get(1).equals("around"))
+					if(list.size() == 1 || noun.equals("around"))
 					{
 						System.out.println(currentRoom.toString());
 					}
@@ -256,7 +245,7 @@ class Player
 					break;
 				case("get"):
 				case("take"):
-					// takeObject();
+					takeItem(noun);
 					break;
 				case("drop"):
 				case("throw"):
@@ -274,9 +263,14 @@ class Player
 						refreshStatus();
 						break;
 					}
+					else if((noun.equals("me") || noun.equals("myself")))
+					{
+						refreshStatus();
+						break;
+					}
 					else
 					{
-						System.out.println("I only understand myself.");
+						System.out.println("I'm only able to check my own status.");
 						break;
 					}
 			}
@@ -311,7 +305,7 @@ class Player
 	{
 		if(list.size() == 2)
 		{
-			String destination = list.get(1);
+			String destination = noun;
 			switch(destination)
 			{
 				case("west"):
@@ -390,5 +384,21 @@ class Player
 						   "Name: " + name + "\n" +
 						   "Level: " + this.level +
 						   "\n\n" + status);
+	}
+
+	public void takeItem(Object object)
+	{
+		if(object instanceof Item)
+		{
+			if(currentRoom.getItems().contains(object))
+			{
+				inventory.add((Item) object);
+			}
+		}
+		else
+		{
+			System.out.println("You can't pick that item up.");
+			AnalysePlayerInput("");
+		}
 	}
 }

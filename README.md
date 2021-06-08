@@ -20,7 +20,7 @@ In order to progress through the game, the player types in commands. For example
 * Money and wealth
 * The ability to level up
 * Working inventory and weight limit restrict the player on what items they can bring
-* Navigation through the bustling town of Cavv 
+* Navigation through the bustling town of Lagoveth 
 * Interaction with NPCs*
 * Quests and more!*
 

@@ -7,7 +7,7 @@ public class Room
 	private String roomName; // name
 	
 	private String description; // description
-	private ArrayList<String> items = new ArrayList<String>(); // items
+	private ArrayList<Item> items = new ArrayList<Item>(); // items
 
 	// location
 	private int locX;
@@ -39,7 +39,7 @@ public class Room
 		return description;
 	}
 	
-	public ArrayList<String> getItems()
+	public ArrayList<Item> getItems()
 	{
 		return items;
 	}
@@ -75,14 +75,14 @@ public class Room
 		this.description = description;
 	}
 
-	public void addItemToParent(String name)
+	public void addItemToParent(Item item)
 	{
-		this.items.add(name);
+		this.items.add(item);
 	}
 
-	public void removeItemFromParent(String name)
+	public void removeItemFromParent(Item item)
 	{
-		this.items.remove(name);
+		this.items.remove(item);
 	}
 
 	public void clearItems()
@@ -215,7 +215,6 @@ public class Room
 		{
 			return "east";
 		}
-
 		// if for whatever reason there is no direction
 		return "null";
 	}
@@ -227,7 +226,15 @@ public class Room
 		// item info
 		// create variables for method
 		ArrayList<String> convert = new ArrayList<String>();
-		convert = items; // convert is set to ArrayList of items
+		
+		if(!items.isEmpty())
+		{
+			for(Item i : items)
+			{
+				convert.add(i.getName());
+			}
+		}
+		
 		String output = this.roomName + "\n\n" + 
 						this.description + "\n";
 

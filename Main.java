@@ -35,10 +35,10 @@ class Main
 	{
 		InitiateRooms();
 		// GetPlayerName();
-		System.out.println("\n\n\n");
-		OutputMap();
-		// Joe.AnalysePlayerInput("");	
-		// Joe.setName(InGameName);
+		// OutputMap();
+
+		Joe.AnalysePlayerInput("");	
+		Joe.setName(InGameName);
 	}
 
 	public static void GetPlayerName()
@@ -55,10 +55,13 @@ class Main
 	public static void InitiateItems()
 	{
 		String instructions = "The Guide to Jork\n\n" + 
-		"This guide well teach you all about how to " + 
-		"beat the game! The aim is to collect all hidden " + 
-		"treasures ";
+		"This guide will teach you all about how to " + 
+		"play the game! Your end goal is to collect hidden treasure.";
+
 		// Book guide = new Book("PlayerGuide", currentRoom, "instructions, guide", "The Guide Book to Jork for Dummies", true, false, instructions);
+
+		Item test = new Item("test", map[0][0], "a", "a", true, false);
+		map[0][0].addItemToParent(test);
 	}
 
 	// INIT ALL ROOMS

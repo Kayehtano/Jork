@@ -94,4 +94,19 @@ public class Item
 	{
 		this.moveable = move;
 	}
+
+	private boolean isParentPlayer()
+	{
+		// check if parent is player
+		if(parent instanceof Player)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	
 }
