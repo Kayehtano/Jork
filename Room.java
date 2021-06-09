@@ -7,7 +7,6 @@ public class Room
 	private String roomName; // name
 	
 	private String description; // description
-	private ArrayList<Item> items = new ArrayList<Item>(); // items
 
 	// location
 	private int locX;
@@ -37,11 +36,6 @@ public class Room
 	public String getDescription()
 	{
 		return description;
-	}
-	
-	public ArrayList<Item> getItems()
-	{
-		return items;
 	}
 
 	public String getAdjacentRooms()
@@ -73,21 +67,6 @@ public class Room
 	public void setDescription(String description)
 	{
 		this.description = description;
-	}
-
-	public void addItemToParent(Item item)
-	{
-		this.items.add(item);
-	}
-
-	public void removeItemFromParent(Item item)
-	{
-		this.items.remove(item);
-	}
-
-	public void clearItems()
-	{
-		this.items.clear();
 	}
 
 	public void addAccessibleRoom(Room room)
@@ -223,39 +202,9 @@ public class Room
 	// and grammar
 	public String toString()
 	{
-		// item info
-		// create variables for method
-		ArrayList<String> convert = new ArrayList<String>();
-		
-		if(!items.isEmpty())
-		{
-			for(Item i : items)
-			{
-				convert.add(i.getName());
-			}
-		}
 		
 		String output = this.roomName + "\n\n" + 
 						this.description + "\n";
-
-		if(convert != null && !convert.isEmpty())
-		{
-			if(convert.size() > 1) // if we have multiple items
-			{
-				for(int i = 0; i < convert.size() - 1; i++)
-				{
-					output += convert.get(i) + ", "; // add commas between each item
-				}
-
-				// add an "and" for the last item in the list
-				String lastWord = convert.get(convert.size() - 1);
-				output += "and " + checkVowel(lastWord) + lastWord + ".";
-			}
-			else // if we only have 1 item
-			{
-				output += "\nThere " + checkVowel(convert.get(0)) + convert.get(0) + " here.";
-			}
-		}
 
 		ParseRooms();
 

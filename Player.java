@@ -148,15 +148,12 @@ class Player
 		// offensive verbs
 		verbs.add("attack");
 		verbs.add("slash");
-		verbs.add("burn");
+		verbs.add("stab");
 
 		// environment verbs
 		verbs.add("look");
 		verbs.add("inventory");
 		verbs.add("buy");
-		verbs.add("get");
-		verbs.add("take");
-		verbs.add("drop");
 		verbs.add("throw");
 
 		// move
@@ -223,11 +220,14 @@ class Player
 				case("go"):
 					moveTo();
 				case("attack"):
-				case("slash"):
+					// random attack
 					// Attack();
 					break;
-				case("burn"):
-					// burn?
+				case("slash"):
+					// Slash();
+					break;
+				case("stab"):
+					// Stab();
 					break;
 				case("look"):
 					if(list.size() == 1 || noun.equals("around"))
@@ -242,14 +242,6 @@ class Player
 					break;
 				case("inventory"):
 					openInventory();
-					break;
-				case("get"):
-				case("take"):
-					takeItem(noun);
-					break;
-				case("drop"):
-				case("throw"):
-					// dropObject();
 					break;
 				case("read"):
 					// readObject();
@@ -384,21 +376,5 @@ class Player
 						   "Name: " + name + "\n" +
 						   "Level: " + this.level +
 						   "\n\n" + status);
-	}
-
-	public void takeItem(Object object)
-	{
-		if(object instanceof Item)
-		{
-			if(currentRoom.getItems().contains(object))
-			{
-				inventory.add((Item) object);
-			}
-		}
-		else
-		{
-			System.out.println("You can't pick that item up.");
-			AnalysePlayerInput("");
-		}
 	}
 }

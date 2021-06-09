@@ -56,10 +56,6 @@ class Main
 	{
 		String instructions = "The Guide to Jork\n\n" + 
 		"Welcome to Jork! Your end goal is to collect the  hidden treasure. Input only takes in a verb + noun (e.g. take book)";
-
-		Item guide = new Item("player guide", currentRoom, "instructions, guide", "The Guide Book to Jork for Dummies", true);
-
-		map[0][0].addItemToParent(guide);
 	}
 
 	// INIT ALL ROOMS
