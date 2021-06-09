@@ -28,11 +28,6 @@ public class Item
 		return description;
 	}
 
-	public boolean canPickup()
-	{
-		return pickup;
-	}
-
 	// setters
 	public void setName(String name)
 	{

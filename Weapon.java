@@ -6,7 +6,7 @@ class Weapon extends Item
 
 	public Weapon(String name, String description, float damage, int cost)
 	{
-		super(name, parent, synonyms, description, pickup);
+		super(name, description);
 		this.damage = damage;
 		this.cost = cost;
 	}

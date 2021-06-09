@@ -24,6 +24,7 @@ In order to progress through the game, the player types in commands. For example
 ## Known Bugs
 * ~~There is a minor bug that the grammar is incorrect if the first item is plural. Really minor.~~ Fixed!
 * Some commands are case-sensitive (e.g. `move South` should be `move south` or it won't work)
+* If you enter a known verb but an unknown noun, it does not give the player an error.
 
 ## Changelog
 * 70% done with items.
