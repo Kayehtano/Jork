@@ -34,10 +34,10 @@ class Main
 	public static void main(String[] args)
 	{
 		InitiateRooms();
-		// GetPlayerName();
+		GetPlayerName();
 		// OutputMap();
 
-		Joe.AnalysePlayerInput("");	
+		Joe.AnalysePlayerInput("");
 		Joe.setName(InGameName);
 	}
 
@@ -55,19 +55,20 @@ class Main
 	public static void InitiateItems()
 	{
 		String instructions = "The Guide to Jork\n\n" + 
-		"This guide will teach you all about how to " + 
-		"play the game! Your end goal is to collect hidden treasure.";
+		"Welcome to Jork! Your end goal is to collect the  hidden treasure. Input only takes in a verb + noun (e.g. take book)";
 
-		// Book guide = new Book("PlayerGuide", currentRoom, "instructions, guide", "The Guide Book to Jork for Dummies", true, false, instructions);
+		Item guide = new Item("player guide", currentRoom, "instructions, guide", "The Guide Book to Jork for Dummies", true);
 
-		Item test = new Item("test", map[0][0], "a", "a", true, false);
-		map[0][0].addItemToParent(test);
+		map[0][0].addItemToParent(guide);
 	}
 
 	// INIT ALL ROOMS
 	public static void InitiateRooms()
 	{
 		// INITIALIZE ROOMS
+		Room playerInv = new Room("Inventory", "", "", 9, 9);
+		AddRoomToMap(playerInv);
+
 		Room startingRoom = new Room("Room 1120", "A small room with a bed, table, and chair. On the table is a nameplate that reads: " + InGameName, "hallway, S", 0, 0);
 		AddRoomToMap(startingRoom);
 		
@@ -79,7 +80,7 @@ class Main
 		Room lobby = new Room("The Vine Inn", "The lobby level of the inn. The inn also doubles as an adventurer's guild. You can find quests to do at the front desk, or you can walk around the city.", "stairs, W | exit, S", 1, 1);
 		AddRoomToMap(lobby);
 
-		Room innEntrance = new Room("Front of the Inn", "In front of you stands the famous inn and adventurer's guild named 'The Vine Inn'. It is famous for being backed by high-level adventurers. Around you, people are walking happily with rows of shops lined up in front of the buildings.", "guild/inn, N | street, W | street, E", 2, 1);
+		Room innEntrance = new Room("Front of the Inn", "In front of you stands the famous inn and adventurer's guild named 'The Vine Inn'. It is famous for being backed by high-level adventurers. Around you, people are walking happily with rows of shops lined up in front of the buildings.", "guild/inn, N | street, W | street, E | street, S", 2, 1);
 		AddRoomToMap(innEntrance);
 		
 		Room streetEnd1 = new Room("Street", "Buildings and various races of people surround you. It is loud as people walk around you trying to get by in life. The west end of the street is blocked by the city walls.", "inn entrance, E", 2, 0);
@@ -125,6 +126,8 @@ class Main
 
 		street3.addAccessibleRoom(innEntrance);
 		// street3.addAccessibleRoom(cityGate);
+
+		InitiateItems();
 
 		// end init and begin game
 		System.out.println("\n\n\n" + currentRoom.toString());

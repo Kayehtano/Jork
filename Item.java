@@ -8,7 +8,7 @@ public class Item
 	private String name;
 
 	// parent object
-	private Object parent;
+	private Room parent;
 
 	// synonyms for object (object can be referenced by these words too)
 	private String synonyms;
@@ -19,18 +19,14 @@ public class Item
 	// can you pick this item up
 	private boolean pickup;
 
-	// can you move this item
-	private boolean moveable;
-
 	// constructor
-	public Item(String name, Object parent, String synonyms, String description, boolean pickup, boolean moveable)
+	public Item(String name, Room parent, String synonyms, String description, boolean pickup)
 	{
 		this.name = name;
 		this.parent = parent;
 		this.synonyms = synonyms;
 		this.description = description;
 		this.pickup = pickup;
-		this.moveable = moveable;
 	}
 
 	// getters
@@ -59,18 +55,13 @@ public class Item
 		return pickup;
 	}
 
-	public boolean canMove()
-	{
-		return moveable;
-	}
-
 	// setters
 	public void setName(String name)
 	{
 		this.name = name;
 	}
 
-	public void setParent(Object parent)
+	public void setParent(Room parent)
 	{
 		this.parent = parent;
 	}
@@ -89,24 +80,4 @@ public class Item
 	{
 		this.pickup = pickup;
 	}
-
-	public void setMove(boolean move)
-	{
-		this.moveable = move;
-	}
-
-	private boolean isParentPlayer()
-	{
-		// check if parent is player
-		if(parent instanceof Player)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	
 }

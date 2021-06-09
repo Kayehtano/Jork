@@ -253,7 +253,7 @@ public class Room
 			}
 			else // if we only have 1 item
 			{
-				output += "" + convert.get(0) + ".";
+				output += "\nThere " + checkVowel(convert.get(0)) + convert.get(0) + " here.";
 			}
 		}
 
@@ -280,4 +280,5 @@ public class Room
 
 		return output;
 	} // end of toString
+
 } // end of class
