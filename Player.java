@@ -8,11 +8,12 @@ class Player
 	private int health = 100;
 	private int level = 1;
 	private double weightLimit = 10.0;
-	private ArrayList<Item> inventory;
+	private ArrayList<Item> inventory = new ArrayList<Item>();
 	private float damage = 5.0f; // 5.0 is base damage
 	private String status = "";
-	private Item currentWeapon;
+	private Weapon currentWeapon;
 	private Room currentRoom;
+	private int balance;
 
 	// essential variables
 	public static String verb;
@@ -24,7 +25,7 @@ class Player
 	// constructors
 	public Player()
 	{
-		this.name = "Joe";
+		this.name = "";
 		this.health = 100;
 		this.level = 1;
 		this.weightLimit = 10.0;
@@ -32,9 +33,10 @@ class Player
 		this.damage = 5.0f;
 		this.status = "";
 		this.currentWeapon = null;
+		this.balance = 0;
 	}
 
-	public Player(String name, int health, int level, double weightLimit, ArrayList<Item> inventory, float damage, String status, Item currentWeapon)
+	public Player(String name, int health, int level, double weightLimit, ArrayList<Item> inventory, float damage, String status, Weapon currentWeapon, int balance)
 	{
 		this.name = name;
 		this.health = health;
@@ -44,6 +46,7 @@ class Player
 		this.damage = damage;
 		this.status = status;
 		this.currentWeapon = currentWeapon;
+		this.balance = balance;
 	}
 
 	// GETTERS
@@ -82,9 +85,9 @@ class Player
 		return status;
 	}
 
-	public String getCurrentWeapon()
+	public Weapon getCurrentWeapon()
 	{
-		return currentWeapon.getName();
+		return currentWeapon;
 	}
 
 	public Room getRoom()
@@ -123,6 +126,11 @@ class Player
 		this.damage = damage;
 	}
 
+	public void setWeapon(Weapon weapon)
+	{
+		this.currentWeapon = weapon;
+	}
+
 	public void setRoom(Room room)
 	{
 		this.currentRoom = room;
@@ -154,7 +162,6 @@ class Player
 		verbs.add("look");
 		verbs.add("inventory");
 		verbs.add("buy");
-		verbs.add("throw");
 
 		// move
 		verbs.add("move");
@@ -164,7 +171,7 @@ class Player
 		verbs.add("read");
 		verbs.add("diagnose");
 
-		// if the answer is only a letter
+		// if the answer is only a letter - used to fix an OutOfBounds error
 		if(answer.length() < 2)
 		{
 			System.out.println(answer);
@@ -244,7 +251,13 @@ class Player
 					openInventory();
 					break;
 				case("read"):
-					// readObject();
+					switch(noun)
+					{
+						case("guide"):
+						case("instructions"):
+						ReadInstructions();
+						break;
+					}
 					break;
 				case("buy"):
 					// shop
@@ -265,7 +278,8 @@ class Player
 						System.out.println("I'm only able to check my own status.");
 						break;
 					}
-			}
+			} // end of switch case
+			System.out.println("\n\n");
 		}
 		else
 		{
@@ -339,6 +353,8 @@ class Player
 			{
 				System.out.println(item.getName());
 			}
+			
+			System.out.println("Your balance is: " + balance);
 		}
 		else
 		{
@@ -376,5 +392,12 @@ class Player
 						   "Name: " + name + "\n" +
 						   "Level: " + this.level +
 						   "\n\n" + status);
+	}
+
+	public void ReadInstructions()
+	{
+		String instructions = "The Guide to Jork\n\n" + 
+		"Welcome to Jork! Your end goal is to collect the  hidden treasure. Input only takes in a verb + noun (e.g. move north). \n\nIn order to collect the treasure, you must fight the enemies beyond the city walls. Every ten enemies comes a boss, and they have a chance to drop a weapon, armor, or treasure.\n\nIf you have just started this game, it is recommended to buy a sword at the shop, located east of the Vine Inn.";
+		System.out.println(instructions);
 	}
 }

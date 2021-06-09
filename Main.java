@@ -34,8 +34,7 @@ class Main
 	public static void main(String[] args)
 	{
 		InitiateRooms();
-		GetPlayerName();
-		// OutputMap();
+		OutputMap();
 
 		Joe.AnalysePlayerInput("");
 		Joe.setName(InGameName);
@@ -51,21 +50,16 @@ class Main
 		}
 	} // end of GetPlayerName func
 
-	// INIT ALL ITEMS
-	public static void InitiateItems()
-	{
-		String instructions = "The Guide to Jork\n\n" + 
-		"Welcome to Jork! Your end goal is to collect the  hidden treasure. Input only takes in a verb + noun (e.g. take book)";
-	}
-
 	// INIT ALL ROOMS
 	public static void InitiateRooms()
 	{
+		GetPlayerName();
+
 		// INITIALIZE ROOMS
 		Room playerInv = new Room("Inventory", "", "", 9, 9);
 		AddRoomToMap(playerInv);
 
-		Room startingRoom = new Room("Room 1120", "A small room with a bed, table, and chair. On the table is a nameplate that reads: " + InGameName, "hallway, S", 0, 0);
+		Room startingRoom = new Room("Room 1120", "A small room with a bed, table, and chair. On the table is a nameplate that reads: " + InGameName.toUpperCase()	 + "\n\nIf you require help, see the instructions by using 'read guide'", "hallway, S", 0, 0);
 		AddRoomToMap(startingRoom);
 		
 		currentRoom = startingRoom;
@@ -94,6 +88,12 @@ class Main
 		Room street3 = new Room("Street", "Buildings and various races of people surround you.", "inn entrance, N | city gate, S", 3, 1);
 		AddRoomToMap(street3);
 
+		Shop shop = new Shop("Equipment Shop", "Welcome to the Dohety! You see streaks of armor and swords lined up. A plump dwarf looks at you, with eyes that read, 'If you're not going to buy anything, get out.' If you would like to see the weapons, enter 'buy swords'. If you would like to see the armor, enter 'buy armor'.", "street, S", 1, 3);
+		AddRoomToMap(shop);
+
+		Shop susAlley = new Shop("Dark Potion Vendor", "The vendor is manned by a mysterious hooded person. You feel chills down your spine as you walk up to the counter. He asks you what you would like to purchase. He lines up potions of health and strength in front of you.", "street, N", 3, 4);
+		AddRoomToMap(susAlley);
+
 		// INITIALIZE ACCESS
 		startingRoom.addAccessibleRoom(southHallway);
 
@@ -115,15 +115,16 @@ class Main
 
 		street2.addAccessibleRoom(street1);
 		street2.addAccessibleRoom(streetEnd2);
+		street2.addAccessibleRoom(shop);
 		// street2.addAccessibleRoom(shop);
 
 		streetEnd2.addAccessibleRoom(street2);
-		// streetEnd2.addAccessibleRoom(alleyway);
+		streetEnd2.addAccessibleRoom(susAlley);
+
+		susAlley.addAccessibleRoom(streetEnd2);
 
 		street3.addAccessibleRoom(innEntrance);
 		// street3.addAccessibleRoom(cityGate);
-
-		InitiateItems();
 
 		// end init and begin game
 		System.out.println("\n\n\n" + currentRoom.toString());
@@ -136,7 +137,9 @@ class Main
 		if(map[room.getX()][room.getY()] == null)
 		{
 			map[room.getX()][room.getY()] = room;
-			System.out.println("Added room " + room.getName() + " successfully!");
+
+			// debug
+			// System.out.println("Added room " + room.getName() + " successfully!");
 		}
 		else
 		{
