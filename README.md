@@ -1,3 +1,6 @@
+#### **GAME NOT FINISHED)))!!**
+
+
 # Jork: Caffeine
 You are a renowned adventurer. That is, until you were framed and kicked out of your party. Wanting to get revenge on your former party members, you sought to discover an item that is only mentioned in the legends.
 #### And that is called, Coffee.
@@ -16,7 +19,7 @@ The player will be able to see their location and the objects that surround them
 In order to progress through the game, the player types in commands. For example, entering `go west` will make the player advance west, while entering `look around` or similar, will give the player information about their surroundings.
 
 ## Cool Features
-* Swords and magic
+* Cool weapons
 * Money and wealth
 * The ability to level up
 * Navigation through the bustling town of Lagoveth 

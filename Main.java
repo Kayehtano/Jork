@@ -34,7 +34,7 @@ class Main
 	public static void main(String[] args)
 	{
 		InitiateRooms();
-		// OutputMap();
+		OutputMap();
 
 		Joe.AnalysePlayerInput("");
 		Joe.setName(InGameName);
